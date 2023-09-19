@@ -47,18 +47,33 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
         return false;
       },
       child: Scaffold(
-        appBar: AppBar(title: Text('Restaurants'),
+        appBar: AppBar(title: Center(child: Text('RESTUARANTS',style: TextStyle(fontSize: 20,color: const Color(0xff87559E)))),
           automaticallyImplyLeading: false,
 
         ),
-        bottomNavigationBar: TabBar(
-          controller: _tabController,
-          labelColor: Colors.blue,
-          tabs: [
-            Tab(text: 'List',),
-            Tab(text: 'Contact Info'),
-          ],
-          indicatorColor: Colors.blue, // Customize indicator color if needed
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            color: Colors.white, // Background color
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 5,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: TabBar(
+            controller: _tabController,
+            labelColor: const Color(0xff87559E),
+            indicatorColor:const Color(0xff87559E),
+
+            tabs: [
+              Tab(text: 'Restuarants',),
+              Tab(text: 'Contact Info'),
+            ],
+
+          ),
         ),
 
         body:  GetBuilder<RestaurantController>(
@@ -72,17 +87,32 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
                     itemCount: restaurantController.restaurants.length,
                     itemBuilder: (context, index) {
                       final restaurant = restaurantController.restaurants[index];
-                      return ListTile(
-                        title: Text(restaurant.name!),
-                        onTap: () {
-                          // Navigate to Screen2 when a list item is tapped
-                          Get.toNamed(Routes.getScreen2(), arguments: restaurant);
-                          // Get.to(Screen2(restaurant: restaurant, onContactInfoAccessed: () {
-                          //   setState(() {
-                          //     hasAccessedContactInfo = true;
-                          //   });
-                          // }));
-                        },
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.getScreen2(), arguments: restaurant);
+                          },
+                          child: Card(
+                            elevation: 3,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    restaurant.name!,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -90,18 +120,42 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
                   // Tab 2: Contact Info
                   controller.hasAccessedContactInfo
                       ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Contact Information'),
-                        // Display contact information here
-                        Text('Phone Number: ${Get.parameters['phoneNumber'] ?? ''}'),
-
-                      ],
+                    child: Container(
+                      height: 100,
+                      margin: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Contact Information',
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 16),
+                          // Display contact information here
+                          Text(
+                            'Phone Number: ${Get.parameters['phoneNumber'] ?? ''}',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          // You can add more contact information here
+                        ],
+                      ),
                     ),
                   )
                       : Center(
-                    child: Text('Please access contact info from Tab 1 first.'),
+                    child: Text('Please access contact info from Tab 1 first.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   )
                 ],
               );

@@ -22,7 +22,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Restaurant App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
+        brightness: Brightness.light,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryColor: const Color(0xff87559E),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+            actionsIconTheme: IconThemeData(color: Colors.black),
+            iconTheme: IconThemeData(color: Colors.black),
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            titleTextStyle: TextStyle(
+                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800)),
       ),
       getPages: RoutesPages.routes,
 
