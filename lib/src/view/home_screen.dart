@@ -4,7 +4,6 @@ import 'package:hogr/route_manager/route.dart';
 
 import '../controllers/restuarant_controller.dart';
 
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -12,17 +11,19 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final RestaurantController restaurantController = Get.find();
-  late TabController _tabController ;
+  late TabController _tabController;
 
   bool hasAccessedContactInfo = false;
   String initialTabIndex = "0";
+
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
@@ -30,30 +31,30 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
     _tabController.addListener(() {
       if (_tabController.index == 1) {
         hasAccessedContactInfo = true;
-
       }
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     initialTabIndex = Get.parameters['initialTab'] ?? "0";
-    print("----   ${Get.parameters['initialTab']}");
+
     _tabController.index = int.parse(initialTabIndex);
     return WillPopScope(
       onWillPop: () async {
-
         return false;
       },
       child: Scaffold(
-        appBar: AppBar(title: Center(child: Text('RESTUARANTS',style: TextStyle(fontSize: 20,color: const Color(0xff87559E)))),
+        appBar: AppBar(
+          title: Center(
+              child: Text('RESTUARANTS',
+                  style:
+                      TextStyle(fontSize: 20, color: const Color(0xff87559E)))),
           automaticallyImplyLeading: false,
-
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
-            color: Colors.white, // Background color
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
@@ -66,17 +67,16 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
           child: TabBar(
             controller: _tabController,
             labelColor: const Color(0xff87559E),
-            indicatorColor:const Color(0xff87559E),
-
+            indicatorColor: const Color(0xff87559E),
             tabs: [
-              Tab(text: 'Restuarants',),
+              Tab(
+                text: 'Restuarants',
+              ),
               Tab(text: 'Contact Info'),
             ],
-
           ),
         ),
-
-        body:  GetBuilder<RestaurantController>(
+        body: GetBuilder<RestaurantController>(
             init: RestaurantController(),
             builder: (controller) {
               return TabBarView(
@@ -86,12 +86,14 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
                   ListView.builder(
                     itemCount: restaurantController.restaurants.length,
                     itemBuilder: (context, index) {
-                      final restaurant = restaurantController.restaurants[index];
+                      final restaurant =
+                          restaurantController.restaurants[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {
-                            Get.toNamed(Routes.getScreen2(), arguments: restaurant);
+                            Get.toNamed(Routes.getScreen2(),
+                                arguments: restaurant);
                           },
                           child: Card(
                             elevation: 3,
@@ -107,7 +109,6 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-
                                 ],
                               ),
                             ),
@@ -120,51 +121,49 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
                   // Tab 2: Contact Info
                   controller.hasAccessedContactInfo
                       ? Center(
-                    child: Container(
-                      height: 100,
-                      margin: EdgeInsets.all(8.0),
-                      padding: EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 3,
-                            blurRadius: 5,
-                            offset: Offset(0, 3),
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Contact Information',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 16),
+                                Text(
+                                  'Phone Number: ${Get.parameters['phoneNumber'] ?? ''}',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Contact Information',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 16),
-                          // Display contact information here
-                          Text(
-                            'Phone Number: ${Get.parameters['phoneNumber'] ?? ''}',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          // You can add more contact information here
-                        ],
-                      ),
-                    ),
-                  )
+                        )
                       : Center(
-                    child: Text('Please access contact info from Tab 1 first.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  )
+                          child: Text(
+                              'Please access contact info from Tab 1 first.',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                        )
                 ],
               );
-            }
-        ),
-
-
-
-
+            }),
       ),
     );
   }

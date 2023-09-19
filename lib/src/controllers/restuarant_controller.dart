@@ -4,12 +4,10 @@ import 'dart:convert';
 
 import '../model/restaurant.dart';
 
-
-
-
 class RestaurantController extends GetxController {
   List<Restaurants> restaurants = [];
   bool hasAccessedContactInfo = false;
+
   @override
   void onInit() {
     super.onInit();
@@ -23,16 +21,18 @@ class RestaurantController extends GetxController {
 
       if (jsonData.containsKey('restaurants')) {
         final restaurantsList = jsonData['restaurants'] as List;
-        restaurants = restaurantsList.map((json) => Restaurants.fromJson(json)).toList();
+        restaurants =
+            restaurantsList.map((json) => Restaurants.fromJson(json)).toList();
       }
     } catch (e) {
       print('Error loading data: $e');
     }
     update();
   }
+
   void setAccessedContactInfo() {
     hasAccessedContactInfo = true;
 
-    update(); // Notify GetX to rebuild the widget
+    update();
   }
 }
