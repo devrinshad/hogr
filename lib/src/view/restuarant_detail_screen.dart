@@ -6,26 +6,31 @@ import 'package:hogr/src/controllers/restuarant_controller.dart';
 
 import '../model/restaurant.dart';
 
-
 class RestuarantDetailScreen extends StatelessWidget {
   const RestuarantDetailScreen({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
     final Restaurants selectedRestaurant = Get.arguments as Restaurants;
 
     return Scaffold(
-      appBar: AppBar(title: Text(selectedRestaurant.name!.toUpperCase(),style: TextStyle(fontSize: 18,color: const Color(0xff87559E))), leading: IconButton(
-        icon: Icon(Icons.arrow_back,color: const Color(0xff87559E),),
-        onPressed: () {
-          Get.offAndToNamed(Routes.getScreen1(),
-              parameters: {'phoneNumber': selectedRestaurant.phoneNumber!,'initialTab': "0"});
-        },
-      ),),
-
+      appBar: AppBar(
+        title: Text(selectedRestaurant.name!.toUpperCase(),
+            style: TextStyle(fontSize: 18, color: const Color(0xff87559E))),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: const Color(0xff87559E),
+          ),
+          onPressed: () {
+            Get.offAndToNamed(Routes.getScreen1(), parameters: {
+              'phoneNumber': selectedRestaurant.phoneNumber!,
+              'initialTab': "0"
+            });
+          },
+        ),
+      ),
       body: Container(
-
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +45,8 @@ class RestuarantDetailScreen extends StatelessWidget {
                   children: [
                     Text(
                       selectedRestaurant.name!,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     RatingBar.builder(
@@ -53,18 +59,14 @@ class RestuarantDetailScreen extends StatelessWidget {
                       itemBuilder: (context, _) => Icon(
                         Icons.star,
                         color: Colors.amber,
-                      ), onRatingUpdate: (double value) {  },
-
+                      ),
+                      onRatingUpdate: (double value) {},
                     ),
                     SizedBox(height: 8),
                     Text(
                       selectedRestaurant.cuisine!,
                       style: TextStyle(fontSize: 18),
                     ),
-
-
-
-
                     SizedBox(height: 8),
                     Text(
                       selectedRestaurant.location!.address!.toString(),
@@ -77,7 +79,9 @@ class RestuarantDetailScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      selectedRestaurant.hours!.open!.toString() +"-"+ selectedRestaurant.hours!.close!.toString(),
+                      selectedRestaurant.hours!.open!.toString() +
+                          "-" +
+                          selectedRestaurant.hours!.close!.toString(),
                       style: TextStyle(fontSize: 18),
                     ),
                   ],
@@ -88,12 +92,12 @@ class RestuarantDetailScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 print("ph0 ${selectedRestaurant.phoneNumber.toString()}");
-                          Get.toNamed(Routes.getScreen3(), arguments: selectedRestaurant.phoneNumber.toString());
+                Get.toNamed(Routes.getScreen3(),
+                    arguments: selectedRestaurant.phoneNumber.toString());
 
-                          Get.find<RestaurantController>().setAccessedContactInfo();
+                Get.find<RestaurantController>().setAccessedContactInfo();
               },
               child: Container(
-
                 decoration: BoxDecoration(
                   color: const Color(0xff87559E),
                   borderRadius: BorderRadius.circular(10),
@@ -102,7 +106,6 @@ class RestuarantDetailScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
                     Text(
                       'Contact Info',
                       style: TextStyle(
@@ -118,8 +121,6 @@ class RestuarantDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-
-
     );
   }
 }
