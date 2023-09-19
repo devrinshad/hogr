@@ -1,0 +1,108 @@
+{
+  "restaurants": [
+    {
+      "name": "Taj Coromandel",
+      "cuisine": "Indian",
+      "price": "$$$$$",
+      "rating": 4.5,
+      "location": {
+        "address": "100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560008",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "zip code": "560008"
+      },
+      "hours": {
+        "open": "12:00 PM",
+        "close": "11:00 PM"
+      },
+      "website": "www.tajcoromandel.com",
+      "phone number": "(080) 3090 1234"
+    },
+    {
+      "name": "The Oberoi",
+      "cuisine": "Indian",
+      "price": "$$$$",
+      "rating": 4.5,
+      "location": {
+        "address": "Dr. Rajkumar Road, Ulsoor, Bengaluru, Karnataka 560048",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "zip code": "560048"
+      },
+      "hours": {
+        "open": "12:00 PM",
+        "close": "11:00 PM"
+      },
+      "website": "www.oberoihotelsandresorts.com",
+      "phone number": "(080) 3050 0000"
+    },
+    {
+      "name": "ITC Windsor",
+      "cuisine": "Indian",
+      "price": "$$$$",
+      "rating": 4.5,
+      "location": {
+        "address": "120, Infantry Road, Bengaluru, Karnataka 560001",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "zip code": "560001"
+      },
+      "hours": {
+        "open": "12:00 PM",
+        "close": "11:00 PM"
+      },
+      "website": "www.itchotels.in",
+      "phone number": "(080) 2222 1234"
+    },
+    {
+      "name": "Hyatt Regency Bangalore",
+      "cuisine": "Indian",
+      "price": "$$$$",
+      "rating": 4.5,
+      "location": {
+        "address": "1-800, Brigade Road, Bengaluru, Karnataka 560002",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "zip code": "560002"
+      },
+      "hours": {
+        "open": "12:00 PM",
+        "close": "11:00 PM"
+      },
+      "website": "www.hyatt.com",
+      "phone number": "(080) 4266 1234"
+    }
+  ],
+  "dishes": [
+    {
+      "name": "Chicken Tikka Masala",
+      "cuisine": "Indian",
+      "price": "$15",
+      "description": "A creamy and flavorful dish made with chicken marinated in yogurt and spices, then cooked in a tomato-based sauce."
+    },
+    {
+      "name": "Pasta Carbonara",
+      "cuisine": "Italian",
+      "price": "$12",
+      "description": "A classic Italian dish made with pasta, bacon, eggs, and cheese."
+    },
+    {
+      "name": "Sushi Roll",
+      "cuisine": "Japanese",
+      "price": "$10",
+      "description": "A Japanese dish made with rice, seaweed, and various fillings, such as fish, vegetables, and eggs."
+    },
+    {
+      "name": "Burger",
+      "cuisine": "American",
+      "price": "$10",
+      "description": "A classic American dish made with a patty of ground beef, cooked and placed between two halves of a bun, with various toppings, such as lettuce, tomato, onion, and cheese."
+    },
+    {
+      "name": "Pizza",
+      "cuisine": "Italian",
+      "price": "$15",
+      "description": "A flatbread topped with tomato sauce and cheese, and then cooked in an oven."
+    }
+  ]
+}
